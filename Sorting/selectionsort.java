@@ -1,18 +1,24 @@
 import java.util.*;
 
-public class bubblesort {
-    public static int[] sort(int arr[]){
+public class selectionsort {
+    public static int[] ssort(int arr[]){
         int n = arr.length;
+        System.out.println("Hello");
         for (int i =0; i < n-1; i++){
+
+            int minpos = i;
+
+            for (int j =i+1;j<n;j++){
     
-            for (int j =0;j<n-1-i;j++){
-               
-                if (arr[j]>arr[j+1]){
-                    int swap = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = swap;
+                if (arr[minpos] > arr[j]){
+                    minpos = j;
                 }
             }
+
+            //swap
+            int swap = arr[minpos];
+            arr[minpos] = arr[i];
+            arr[i] = swap;
         }
         return arr;
 
@@ -29,7 +35,7 @@ public class bubblesort {
             arr[i] = sc.nextInt();
         }
 
-        sort(arr);
+        arr = ssort(arr);
         System.out.println();
         System.out.println("Sorted array is:");
         System.out.println();
@@ -40,4 +46,5 @@ public class bubblesort {
         sc.close();
       }
 
+    
 }
