@@ -126,6 +126,77 @@ public class linkedlist {
         }
         return -1;
     }
+
+    public void reverse(){// O(n)
+        // 3 variables 4 steps
+        Node curr = head;
+        Node prev = null;
+        tail = head;
+        Node next;
+        while(curr!=null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+    public void removenthnodefromlast(int n){
+        Node temp = head;
+        int sz=0;
+       
+        while(temp!=null){
+            temp=temp.next;
+            sz++;
+        }
+        temp=head;
+         if (n==sz){
+            head=head.next; // remove first element
+            return;
+        }
+        int del = sz-n; // finding the node to remove from starting
+        for(int i = 1; i<del; i++) // traversing upto the node just previous one 
+        {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return;
+    }
+    public Node findmid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        return slow;
+    }
+    public boolean checkpalin(){
+        if (head==null  || head.next == null){
+            return true;
+        }
+        Node curr = findmid(head);
+       
+        Node prev = null;
+        Node next = null;
+        while(curr!=null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node left = head;
+        Node right = prev;
+        while(right != null){
+            if (right.data!=left.data){
+                return false;
+            }
+            right = right.next;
+            left = left.next;
+        }
+        return true;
+    }
     public void print(){
         if (head==null){
             System.out.println("Null");
@@ -152,8 +223,11 @@ public class linkedlist {
         ll.removefirst();
         ll.addlast(4);
         ll.addlast(5);
+        ll.addlast(7);
+        ll.addlast(8);
+        ll.addlast(9);
         ll.print();
-        ll.removelast();
+        ll.removelast();      
         ll.print();
         int search = ll.search(1);
         System.out.println("Element found at "+search);
@@ -162,6 +236,19 @@ public class linkedlist {
         ll.addmid(0, 0);
         ll.print();
         ll.removelast();
+        ll.print();
+        System.out.println(ll.size);
+        ll.removenthnodefromlast(4);
+        ll.print();
+        ll.reverse();
+        ll.print();
+        System.out.println(ll.findmid(head).data);
+        ll.addlast(1);
+        ll.addlast(9);
+        ll.addlast(5);
+        ll.addlast(7);
+        ll.print();
+        System.out.println(ll.checkpalin());
         ll.print();
         System.out.println(ll.size);
         int search2 = ll.search(10);
