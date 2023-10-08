@@ -60,7 +60,7 @@ public static int[] checklast(int arr[]){
                 max= area[i];
             }
         }
-        System.out.println();
+        System.out.println();co
         System.out.println(max);
         
         System.out.println();
